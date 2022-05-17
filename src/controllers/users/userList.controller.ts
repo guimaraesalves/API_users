@@ -1,18 +1,18 @@
-import { users } from './../../database/index';
+
 import { Request, Response } from "express";
 import userListService from '../../services/user/userList.service';
 
-const userListController = (req: Request, res: Response) => {
+const userListController = async (req: Request, res: Response) => {
     try {
-        const users = userListService()
+        const users = await userListService()
 
         return res.send(users)
 
     } catch (err) {
         if (err instanceof Error) {
             return res.status(400).send({
-                error: err.name,
-                message: err.message,
+                "error": err.name,
+                "message": err.message,
                 
             })
         }
